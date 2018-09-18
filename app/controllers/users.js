@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
 
+require('../models/users.js');
+/*const UserSchema = new mongoose.Schema({
+	id: Number,
+	name: String,
+	surname: String,
+});
+mongoose.model('User',UserSchema);*/
 const User = mongoose.model('User');
 
 const getAll = (req,res) =>{

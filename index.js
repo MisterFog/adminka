@@ -3,10 +3,17 @@ const express = require('express');
 // express-это функция запустим её присвоев ей результат своей собственной переменной
 const app = express();
 
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
+//подключаем bodyParser
+require('./config/express.js')(app);
+/*const bodyParser = require('body-parser');
+app.use(bodyParser.json());*/
+
+//Подключаем файл с routes
+//require('./config/routes.js')(app);
 
 const mongoose = require('mongoose');
+//подключаем модель пользователя
+require('./app/models/users.js');
 
 //импортируем из файла port и urldb
 const config = require('./config/app.js');
@@ -14,7 +21,12 @@ const config = require('./config/app.js');
 //const urldb = 'mongodb://localhost:27017/test';
 
 //подключаем базу данных
-mongoose.connect(config.urldb);
+mongoose.connect(config.urldb)    
+	.then(() => app.listen(config.port,()=>console.log('Listening on port: '+config.port)))
+	.catch(err => console.error('Error connecting to mongo: '+config.urldb, err))
+	//catch-выдаёт ошибку подключение я консоли
+//вызываем метод listen, которому передаём номер порта и colbeack(ответ при успешном подключении)
+//app.listen(config.port,()=>console.log('Listening on port '+config.port));
 
 //используем класс схемы которые предостовляет mogoosdb для описания схемы класса
 const Users = mongoose.model('Users',{
@@ -55,4 +67,4 @@ app.delete(
 		.then(()=> res.json({success: true})),	
 	);/**/
 
-app.listen(config.port,()=>console.log('Listening on port '+config.port));
+
