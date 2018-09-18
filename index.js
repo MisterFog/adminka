@@ -8,12 +8,13 @@ app.use(bodyParser.json());
 
 const mongoose = require('mongoose');
 
-const port = 3000;
-const urldb = 'mongodb://localhost:27017/test';
-const appdb = {port,urldb};
+//импортируем из файла port и urldb
+const config = require('./config/app.js');
+//const port = 3000;
+//const urldb = 'mongodb://localhost:27017/test';
 
 //подключаем базу данных
-mongoose.connect(urldb);
+mongoose.connect(config.urldb);
 
 //используем класс схемы которые предостовляет mogoosdb для описания схемы класса
 const Users = mongoose.model('Users',{
@@ -54,4 +55,4 @@ app.delete(
 		.then(()=> res.json({success: true})),	
 	);/**/
 
-app.listen(port,()=>console.log('Listening on port '+port));
+app.listen(config.port,()=>console.log('Listening on port '+config.port));

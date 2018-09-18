@@ -1,0 +1,4 @@
+#Исключим директорию node_modules:
+node_modules/
+#Исключим файл db.js:
+config/db.js
