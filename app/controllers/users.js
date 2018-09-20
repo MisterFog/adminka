@@ -1,39 +1,49 @@
 const mongoose = require('mongoose');
 
-require('../models/users.js');
-/*const UserSchema = new mongoose.Schema({
+//require('../models/users.js');
+/*const userSchema = new mongoose.Schema({
 	id: Number,
 	name: String,
 	surname: String,
+	birthday: String,//mongoose.Schema.Types.Date,
+	email: String,
+	login: String,
+	password: String
+});*/
+var userSchema = new mongoose.Schema({	
+	id: Number,
+	name: String,
+	surname: String
 });
-mongoose.model('User',UserSchema);*/
-const User = mongoose.model('User');
+var Users = mongoose.model('Users', userSchema);
 
-const getAll = (req,res) =>{
-	User.find()
-	.exec()//чтобы не превратить результат в promis
-	.then(users => req.json(users))//возвращаем из базы пользователя
-	.catch(err => res.status(500).json(err));//обработчик ошибок
+const getAll = (req,res)=>{
+	Users.find()
+		.exec()
+		.then(users => res.json(users))
+		.catch(err => res.status(500).json(err))//обработчик ошибок
 };
 
-const create = (req,res)=> {
-	User.create(req.body)//создание нового пользователя
-	.then(crearedUsers => res.json(crearedUsers))//возврат нового пользователя
-	.catch(err => res.status(500).json(err));//обработчик ошибок
+const create = (req,res)=>{
+		Users.create(req.body)
+		.then(createdUsers => res.json(createdUsers))
+		.catch(err => res.status(500).json(err))
+		console.log(req.body);		
 };
 
-const update = (req,res)=> {
-	User.findOneAndUpdate({id: req.params.id},req.body)
-	.axac()
-	.then(users => req.json(users))
-	.catch(err => res.status(500).json(err));//обработчик ошибок
+const update = (req,res)=>{
+	Users.updateOne({id: req.params.id},req.body)
+		.exec()
+		.then(users => res.json(users))
+		.catch(err => res.status(500).json(err))
+		console.log(req.body);
 };
 
-const remove = (req,res)=> {
-	User.deleteOne({id: req.parems.id})
-	.exec()
-	.then(() => res.json({success: true}))
-	.catch(err => res.status(500).json(err));//обработчик ошибок
+const remove = (req,res)=>{
+	Users.deleteOne({id:req.params.id})
+		.exec()
+		.then(()=> res.json({success: true}))
+		.catch(err => res.status(500).json(err))
 };
 
 //экспортируем все четыре метода

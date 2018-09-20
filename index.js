@@ -9,11 +9,11 @@ require('./config/express.js')(app);
 app.use(bodyParser.json());*/
 
 //Подключаем файл с routes
-//require('./config/routes.js')(app);
+require('./config/routes.js')(app);
 
 const mongoose = require('mongoose');
 //подключаем модель пользователя
-require('./app/models/users.js');
+//require('./app/models/users.js');
 
 //импортируем из файла port и urldb
 const config = require('./config/app.js');
@@ -29,42 +29,53 @@ mongoose.connect(config.urldb)
 //app.listen(config.port,()=>console.log('Listening on port '+config.port));
 
 //используем класс схемы которые предостовляет mogoosdb для описания схемы класса
-const Users = mongoose.model('Users',{
+/*const Users = mongoose.model('Users',{
 	id: Number,
 	name: String,
 	surname: String,
-	/*birthday: String,//mongoose.Schema.Types.Date,
+	birthday: String,//mongoose.Schema.Types.Date,
 	email: String,
 	login: String,
-	password: String*/
-});
+	password: String
+});*/
 
-app.get(
-	'/test.users',
-	(req,res)=>Users.find()
+/*var userSchema = new mongoose.Schema({	
+	id: Number,
+	name: String,
+	surname: String
+});
+var Users = mongoose.model('Users', userSchema);
+
+const getAll = (req,res)=>{
+	Users.find()
 		.exec()
-		.then(users => res.json(users)),
-	);
-app.post(
-	'/test.users',
-	(req,res)=>{
+		.then(users => res.json(users))
+		.catch(err => res.status(500).json(err))//обработчик ошибок
+};
+
+const create = (req,res)=>{
 		Users.create(req.body)
-		.then(createdUsers => res.json(createdUsers));
+		.then(createdUsers => res.json(createdUsers))
+		.catch(err => res.status(500).json(err))
 		console.log(req.body);		
-	});
-app.put(
-	'/test.users/:id',
-	(req,res)=>{
+};
+
+const update = (req,res)=>{
 	Users.updateOne({id: req.params.id},req.body)
 		.exec()
-		.then(users => res.json(users));
+		.then(users => res.json(users))
+		.catch(err => res.status(500).json(err))
 		console.log(req.body);
-	});
-app.delete(
-	'/test.users/:id',
-	(req,res)=>Users.deleteOne({id:req.params.id})
+};
+
+const remove = (req,res)=>{
+	Users.deleteOne({id:req.params.id})
 		.exec()
-		.then(()=> res.json({success: true})),	
-	);/**/
+		.then(()=> res.json({success: true}))
+		.catch(err => res.status(500).json(err))
+};
 
-
+app.get('/test.users',getAll);
+app.post('/test.users',create);
+app.put('/test.users/:id',update);
+app.delete('/test.users/:id',remove);*/
