@@ -1,10 +1,14 @@
-const users = require('../app/controllers/users.js');
-
-var sms = console.log("Привет от директории с роутами!");
+const user = require('../app/controllers/users.js');
+const auth = require('../app/controllers/auth.js');
+const authMiddelware = require('../app/middleware/auth_mid.js');
 
 module.exports = (app) => {
-	app.get('/test.users',users.getAll);
-	app.post('/test.users',users.create);
-	app.put('/test.users/:id',users.update);
-	app.delete('/test.users/:id',users.remove);
+	// users
+	app.get('/test.users',authMiddelware,user.getAll);
+	app.post('/test.users',authMiddelware,user.create);
+	app.put('/test.users/:id',authMiddelware,user.update);
+	app.delete('/test.users/:id',authMiddelware,user.remove);
+
+	// auth
+	app.post('/signin',auth.signIn);
 };
