@@ -11,10 +11,36 @@ const getAll = (req,res)=>{
 };
 
 const create = (req,res)=>{
+	//Шифрование пароля нового пользователя
+		//вытягиваем из формы Postman пароль пользователя
+		var {password} = req.body;
+
+		// подключаем bcrypt
+		var bcrypt = require('bcrypt');
+		 
+		// пароль пользователя
+		var passwordFromUser = password;
+		 
+		// создаем соль
+		var salt = bcrypt.genSaltSync(10);
+		 
+		// шифруем пароль
+		var passwordToSave = bcrypt.hashSync(passwordFromUser, salt)
+		 
+		// выводим результат
+		//console.log('пароль пользователя: '+passwordFromUser+'; соль: '+salt);
+		//console.log('Крипто-пароль: '+passwordToSave);	
+
+		//проверка пароля
+		//console.log(bcrypt.compareSync(passwordFromUser, passwordToSave));
+		
+		//записываем зашифрованный пароль в запрос Postman
+		req.body.password = passwordToSave
+
 		User.create(req.body)
 		.then(createdUsers => res.json(createdUsers))
 		.catch(err => res.status(500).json(err))
-		console.log(req.body);		
+		console.log(req.body);
 };
 
 const update = (req,res)=>{
