@@ -32,7 +32,7 @@ const generateRefreshToken = () =>{
 };
 
 //метод перезаписи refresh-токена в базе
-const replaceDbRefreshToken =(tokenId,UserId) =>
+const replaceDbRefreshToken =(tokenId,userId) =>
 	//каждый refresh-токен пирвязан к пользователю
 	//поэтому находим refresh-токен по userId и удаляем,
 	//после удаления сразу создаём новый

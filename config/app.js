@@ -7,11 +7,11 @@ module.exports = {
 		tokens:{
 			access:{
 				type:'access',
-				expiresIn:'2m',//время жизни access-токена
+				expiresIn:'1m',//время жизни access-токена
 			},
 			refresh:{
 				type:'refresh',
-				expiresIn:'3m',//время жизни refresh-токена
+				expiresIn:'2m',//время жизни refresh-токена
 			},
 		},
 	},

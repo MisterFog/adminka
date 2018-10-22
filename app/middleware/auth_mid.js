@@ -14,27 +14,27 @@ module.exports = (req,res,next)=>{//в качестве параметров п�
 
 	//дастаём из header токен и валидируем его
 	const token = authHeader.replace('Bearer ','');
-	/*try{
+	try{
 		const payload = jwt.verify(token,secret);//verify-кидает exeption если токен не валидный
 		if (payload.type !== 'access'){
-			res.status(401).json({message:'Не верный токен!'});
+			res.status(401).json({message:'(auth_mid.js) Не верный токен!'});
 			return;
 		}
 	}catch(e){
 		if (e instanceof jwt.TokenExpiredError){
-			res.status(401).json({message:'Время жизни токена истекло!'});
+			res.status(401).json({message:'(auth_mid.js) Время жизни токена истекло!'});
 			return;
 		}
 		if(e instanceof jwt.JsonWebTokenError){
-			res.status(401).json({message:'Не верный токен!'});
+			res.status(401).json({message:'(auth_mid.js) Не верный токен!'});
 			return;
 		}
-	}*/
+	}/**/
 	try{
 		jwt.verify(token,secret);
 	}catch(e){
 		if(e instanceof jwt.JsonWebTokenError){
-			res.status(401).json({message:'Не верный токен!'});
+			res.status(401).json({message:'(auth_mid.js) Не верный токен!'});
 		}
 	}
 

@@ -9,7 +9,6 @@ const authHelper = require('../helpers/authHelper.js');
 //функция которая обновляет access- & refresh-токены и отправляет их в базу mongoDB
 const updateTokens = (userId) =>{	
 	const accessToken = authHelper.generateAccessToken(userId);
-	//console.log('accessToken: '+accessToken);
 
 	const refreshToken = authHelper.generateRefreshToken();
 
@@ -31,7 +30,7 @@ const signIn = (req,res)=>{
 		.then((user) =>{			
 			//вслучие если искомого пользователя не существует, вызываем ошибку
 			if(!user){
-				res.status(401).json({message:'Пользователь не найден!'})
+				res.status(401).json({message:'(signIn) Пользователь не найден!'})
 			}
 			//если пользователь существует в базе
 			//сравниваем закэшированные пароли
@@ -40,13 +39,13 @@ const signIn = (req,res)=>{
 
 			//если пароль верный - создаём токен
 			if(isValid){
-				/*updateTokens(user._id).then(tokens =>res.json(tokens));*/
-				const token = jwt.sign(user._id.toString(),secret);
-				res.json({token});
+				updateTokens(user._id).then(tokens =>res.json(tokens));
+				/*const token = jwt.sign(user._id.toString(),secret);
+				res.json({token});*/
 			}
 			//если пароль сгенерирован не верно - передаём ошибку
 			else{
-				res.status(401).json({message:'Пароль не верный!'});
+				res.status(401).json({message:'(signIn) Пароль не верный!'});
 			}/**/
 		})
 		//обработка остальных ошибок
@@ -61,7 +60,7 @@ const refreshTokens = (req, res) =>{
 	try{
 		payload = jwt.verify(refreshToken,secret);
 		if(payload.type !== 'refresh'){
-			res.status(400).json({message:'Неверный токен!'});
+			res.status(400).json({message:'(refreshTokens) Неверный type токена!'});
 			return;
 		}
 	}
@@ -70,10 +69,10 @@ const refreshTokens = (req, res) =>{
 	//-токен не верного формата
 	catch(e){
 		if(e instanceof jwt.TokenExpiredError){
-			res.status(400).json({message:'Время жизни токена истекло!'});
+			res.status(400).json({message:'(refreshTokens) Время жизни токена истекло!'});
 			return;
 		}else if (e instanceof jwt.JsonWebTokenError){
-			res.status(400).json({message:'Неверный формат токена!'});
+			res.status(400).json({message:'(refreshTokens) Неверный формат токена!'});
 			return;
 		}
 	}
@@ -82,11 +81,11 @@ const refreshTokens = (req, res) =>{
 		.exec()
 		.then((token)=>{
 			if(token===null){
-				throw new Error('Неверный токен!');
+				throw new Error('(refreshTokens) Неверный токен!');
 			}
 			return updateTokens(token.userId);
 		})
-		.then(token => res.json(tokens))
+		.then(tokens => res.json(tokens))
 		.catch(err => res.status(400).json({message: err.message}));
 };/**/
 
