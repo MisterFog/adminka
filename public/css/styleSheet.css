@@ -1,0 +1,261 @@
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, em, img, strong, sub, sup, b, u, i,  dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;                /* обнуляем отступы и убираем бордюры */
+	vertical-align: baseline;  /* приводим все к одной базовой линии */
+	background: transparent;   /* чтобы не проскакивали левые фоны, установленные по умолчанию */
+	font-size: 100%;           /* размер шрифта всем одинаковый */
+}
+a {     /* ссылка не в общем списке чтобы не сбрасывать outline по умолчанию */
+	margin:0;
+	padding:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+	outline:none;
+}
+table {						/* устраняем отступы между ячейками таблицы */
+	border-collapse: collapse; 
+	border-spacing: 0;
+}
+td, td img {
+	vertical-align: top;			/* возвращаем привычное вертикальное выравнивание */
+} 
+input, select, button, textarea {
+	margin: 0; 				/* убираем отступы по умолчанию для элементов форм (в частности для checkbox и radio) */
+	font-size: 100%; 			/* делаем размер шрифтов везде одинаковым */
+	outline: none;
+}
+
+input[type="checkbox"] { 		/* вертикальное выравнивание чекбоксов и радиобатонов относительно меток */
+	vertical-align: bottom;
+}
+input[type="radio"] {
+	vertical-align: text-bottom;
+}
+sub {
+	vertical-align: sub;
+	font-size: smaller;
+}
+sup {
+	vertical-align: super;
+	font-size: smaller;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display:block;
+}
+nav ul {
+	 list-style:none;
+}
+/* --------------- /reset.css --------------- */
+
+/* --------------- базовые настройки ---------*/
+html {
+	min-height:100%; /* всегда показываем вертикальную полосу прокрутки  */
+}
+body {
+	color: #404040;/* цвет шрифта */
+	text-align: left;
+	font-size: 1em; /* используем безопасные шрифтовые CSS стеки */
+	min-height:100%;
+    background: #f9f9f9;/* Цвет фона */
+    font-family: 'Open Sans', sans-serif;/*Импортируем шрифт из GoogleFonts*/
+}
+a, a:visited { /* порядок правил для ссылок имеет значение */
+	color: #e6618c;
+	text-decoration: underline;
+}
+a:hover {
+	color: #fdf208;
+	text-decoration:none;
+}
+a:focus, a:active {
+	color: #c83867;
+	text-decoration: underline;
+}
+h1, h2, h3, h4, h5, h6{
+	font-weight:normal;
+}
+img{
+
+	max-width:100%;
+}
+.clr{
+	clear:both;
+}
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+/* --------------- /базовые настройки ---------*/
+header {
+    /*-----*/
+    background: url('../images/header-bg.jpg') center center no-repeat;/*Вставляем картинку-по центру, картинка не повторяется*/ 
+    color:#fff;/*шрифт белого цвета*/ 
+    text-align:center;/*буквы по центру*/ 
+    background-size:cover;/*растягиваем картинку на всюширену экрана*/
+    padding:40px 20px 40px 20px;/*отступы сверху справа снизу слева*/
+}
+header>h1{
+    font-size: 3.75em;/*размер шрифтаперевод px в em (60/16=3,75 em)*/
+    font-family: 'Raleway', sans-serif;/*из GooglFont импорт шрифта*/ 
+    margin-bottom:25px;/*отступ снизу*/
+}
+header>h3{
+    /*размер шрифтаперевод px в em (60/16=3,75 em)-из GooglFont импорт шрифта-отступ снизу*/
+    font-size: 1.125em; margin-bottom:50px; font-style:italic;
+}
+header>p{
+    font-size:0.75em;
+}
+/*Описываем рамку вокруг поля ввода имени и емаила*/
+.subscribe{/**/
+    background:rgba(0,0,0,0.65);/*Задаём фоновый цвет полупрозрачный red green blue a- непрозоачность;*/
+    display:table;/*table-ширина блока = содержимому;*/
+    padding:20px;/*отступы справо/слева;*/
+    margin:0 auto 10px auto;/*снизу/сверху;*/ 
+    border-radius:5px;/*закругляем углы*/
+}
+/*Выравниваем text-boks*//*выравниваем text-bokses по размеру*/
+.subscribe input[type="text"], .subscribe input[type="password"] {
+    padding: 0;/*убираем внутренние отступы для текстовых полей;*/ 
+    border:0;/*убераем граници полей;*/	
+    width:320px;/*ширина text-boksa;*/ 
+    margin-right:10px;/*правый край;*/	
+    font-family: 'Open Sans', sans-serif;/*Назначили шрифт;*/ 
+    font-size:1em;/*размер шрифта;*/ 
+    padding:12px 20px 13px 20px;/*внутренние отступы (они + к ширене text-baksa(320)*/ 
+    box-sizing:border-box;/*, чтобы выравнить поле берём border-box)*/
+}
+/*выравниваем text-boxes по одной линии*/
+.subscribe input{
+    float:left; 
+}
+/*Описываем кнопку "Ввод"*/
+.subscribe input[type="submit"]{
+    /*заливка; убрали рамку; цвет шрифта; размер шрифта; стиль шрифта; жирность шрифта; закругляем углы; отступы*/
+    background:#ae2c52; border:-1px; color:#fff; font-size:1.25em; font-family: 'Open Sans', sans-serif; font-weight:700; border-radius:5px; padding:10px 35px;
+    /*при наведении меняется курсор; */
+    cursor:pointer;
+}
+.subscribe input[type="button"]{
+    /*заливка; убрали рамку; цвет шрифта; размер шрифта; стиль шрифта; жирность шрифта; закругляем углы; отступы*/
+    background:#ae2c52; border:-1px; color:#fff; font-size:1.25em; font-family: 'Open Sans', sans-serif; font-weight:700; border-radius:5px; padding:10px 35px;
+    /*при наведении меняется курсор; */
+    cursor:pointer;
+    margin-left: 8px;
+}
+
+/*Описываем рамку вокруг регистрационного поля*/
+.regform{
+    background:rgba(0,0,0,0.65);/*Задаём фоновый цвет полупрозрачный red green blue a- непрозоачность;*/
+    display:table;/*table-ширина блока = содержимому;*/
+    padding:20px;/*отступы справо/слева;*/
+    margin:0 auto 10px auto;/*снизу/сверху;*/ 
+    border-radius:5px;/*закругляем углы*/
+}
+.regform input[type="text"], .regform input[type="password"], .regform input[type="date"], .regform input[type="email"]{
+    padding: 0;/*убираем внутренние отступы для текстовых полей;*/ 
+    border:0;/*убераем граници полей;*/ 
+    width:360px;/*ширина text-boksa;*/
+    /*height:30px;*/
+    margin-right:10px;/*правый край;*/    
+    font-family: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;/*Назначили шрифт;*/ 
+    font-size:1em;/*размер шрифта;*/
+    padding:10px 15px 11px 15px;/*внутренние отступы (они + к ширене text-boxa(320)*/ 
+    box-sizing:border-box;/*, чтобы выравнить поле берём border-box)*/
+}
+.regform label{
+    width:150px;
+    margin-top: 3px;
+    display:inline-block;
+    float:left;
+    padding:3px;
+}
+/*Описываем кнопку "Ввод"*/
+.regform input[type="submit"]{
+    background:#ae2c52;/*заливка;*/
+    border:-1px;/*убрали рамку; */
+    color:#fff;/*цвет шрифта;*/ 
+    font-size:1.25em;/*размер шрифта;*/ 
+    font-family: 'Open Sans', sans-serif;/* стиль шрифта;*/ 
+    font-weight:700;/*жирность шрифта;*/ 
+    border-radius:5px;/*закругляем углы;*/ 
+    padding:10px 35px;/*отступы*/    
+    cursor:pointer;/*при наведении меняется курсор; */
+    margin-top:15px;/*внешний отступ сверху;*/
+}
+.regform input[type="button"]{
+    background:#ae2c52;/*заливка;*/
+    border:-1px;/*убрали рамку;*/ 
+    color:#fff;/*цвет шрифта;*/ 
+    font-size:1.25em;/*размер шрифта;*/ 
+    font-family: 'Open Sans', sans-serif;/*стиль шрифта;*/ 
+    font-weight:700;/*жирность шрифта;*/ 
+    border-radius:5px;/*закругляем углы;*/ 
+    padding:10px 35px;/*отступы*/    
+    cursor:pointer;/*при наведении меняется курсор; */
+    margin-left: 8px;/*внешний отступ слева*/
+    margin-top:15px;/*внешний отступ сверху;*/
+}
+/*.regform li{
+    margin:0 auto 10px auto;снизу/сверху; 
+}*/
+.regform ul{
+    width:720px;
+    list-style-type:none;
+    list-style-position:outside;
+    margin:0px;
+    padding:0px;
+}
+.regform li{
+    padding:12px;    
+    position:relative;
+} 
+/*добавляем тонкую рамку к верхнему и нижнему разделам формы*/ 
+.regform li:first-child, .regform li:last-child {
+    border-bottom:1px solid #777;
+}
+.regform span{
+    font-size:0.9em;/*размер шрифта;*/ 
+    margin-left: 130px;
+}
+
+/*Формеруем медио запроссы т.е. описание как некоторые классы должны выглядеть при изменении ширены икрана*/ 
+
+@media screen and (max-width:950px){
+    /*950-это та ширина экрана при которой начинается трансформация класов*/
+    .subscribe input[type="text"], .subscribe input[type="password"]{
+        width:260px;
+    }
+}
+/*При разрешении меньше 820px класс subscribe реформатируется в столбец*/
+@media screen and (max-width:820px) {
+    .subscribe input[type="text"], .subscribe input[type="password"] {
+        width: 320px;
+        display: block;
+        float: none;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    header{
+        padding: 30px 20px;
+    }
+    header>h1{
+    /*размер шрифтаперевод px в em (60/16=3,75 em)-из GooglFont импорт шрифта-отступ снизу*/
+    font-size: 3em; margin-bottom:20px;
+    }
+    header>h3{
+        /*размер шрифтаперевод px в em (60/16=3,75 em)-из GooglFont импорт шрифта-отступ снизу*/
+        margin-bottom:25px;
+    }
+   
+}
+@media screen and (max-width:400px){
+    .subscribe input[type="text"], .subscribe input[type="password"] {
+        width: 240px;
+    }
+}

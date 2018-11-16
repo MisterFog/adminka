@@ -1,5 +1,6 @@
 const user = require('../app/controllers/users.js');
 const auth = require('../app/controllers/auth.js');
+const view = require('../app/controllers/view.js');
 const authMiddelware = require('../app/middleware/auth_mid.js');
 
 module.exports = (app) => {
@@ -12,5 +13,16 @@ module.exports = (app) => {
 	// auth	
 	app.post('/signin',auth.signIn);
 	app.post('/refresh-tokens',auth.refreshTokens);
-	app.post('/exp',auth.exp);
+	app.post('/exp',auth.exp);	
+
+	// создаём маршрут для главной страницы - http://localhost:3000/
+	app.get('/', function(req, res){
+		res.sendfile('start.html');
+	});
+
+	//view
+	app.get('/registration',view.registration);
+	/*app.get('/registration', function(req, res){
+		res.sendfile('registration.html');
+	});*/
 };

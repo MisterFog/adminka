@@ -1,0 +1,28 @@
+<!doctype html>
+<!--Чтобы ассоциировать модуль с определенным куском html-страницы, нужно использовать директиву ng-app:-->
+<html ><!-- ng-app="myApp" -->
+<!--директива ng-app объявляет элемент <html> корневым для всего приложения--> 
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- для одаптивности страници -->
+    	<link rel="stylesheet" type="text/css" href="css/styleSheet.css">
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,700|Raleway:200i&amp;subset=cyrillic">
+
+        <title>Тестовое задание</title>
+    </head>
+    <header>
+            <h1>Блок авторизации</h1>
+            <h3>Введите email и пароль</h3>        
+            <div class="subscribe"> <!-- Блок-обвёртка -->
+                <form action="" method="post">
+                    <input type="text" name="name" placeholder="enter your email" />
+                    <input type="password" name="password" placeholder="enter your password" />
+                    <input type="submit" value="Ввод" />
+                </form>                 
+            </div>
+                    <h3>Если вы не авторизованны, пройдите <a href="/registration" style="color: #60bbf3; font-size: 1.3em">регистрацию</a></h3>
+    </header>
+    <body>
+    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<!--Чтобы ассоциировать модуль с определенным куском html-страницы, нужно использовать директиву ng-app:-->
+<html ng-app="">
+<!--директива ng-app объявляет элемент <html> корневым для всего приложения--> 
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- для одаптивности страници -->
+    <link rel="stylesheet" type="text/css" href="css/styleSheet.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,700|Raleway:200i&amp;subset=cyrillic">
+
+    <title>Registration</title>
+</head>
+<header><!-- name surname email login password roles birthdate -->
+        <h1>Регистрация</h1>                
+        <div class="regform"> <!--Блок-обвёртка-->
+            <form action="" method="post">
+                <ul>
+                    <li>
+                        <h3>Заполните форму:</h3>
+                    </li>
+                    <li>
+                        <label for="reg_name">Имя: </label>
+                        <input type="text" name="reg_name" placeholder="enter your name" required/>
+                    </li>
+                    <li>
+                        <label for="reg_surname">Фамилия: </label>
+                        <input type="text" name="reg_surname" placeholder="enter your surname" required/>
+                    </li>
+                    <li>
+                        <label for="reg_birthdate">День рождения: </label>
+                        <input type="date" name="reg_birthdate" placeholder=" dd.mm.yyyy" required/>
+                    </li>
+                    <li>
+                        <label for="reg_email">Почта: </label>
+                        <input type="email" name="reg_email" placeholder="enter your email" required/><p>
+                        <span class="form_hint">*Proper format "name@something.com"</span>                        
+                    </li>
+                    <li>
+                        <label for="reg_login">Логин: </label>
+                        <input type="text" name="reg_login" placeholder="enter your login" required/>
+                    </li>                    
+                    <li>
+                        <label for="reg_password">Пароль: </label>
+                        <input type="password" name="reg_password" placeholder="enter your password" required/>
+                    </li>
+                </ul>
+                <input type="submit" value="Ввод" />
+                <input type="button" value="Отмена" onclick="comeback()"/>
+            </form>                 
+        </div>            
+</header>
+<body>    
+    <script type="text/javascript">
+        function comeback()
+        {
+            location.href='http://localhost:3000';
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</body>
+</html>

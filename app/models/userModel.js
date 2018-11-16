@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-	id: Number,
 	name: String,
-	surname: String,	
+	surname: String,
+	birthdate: Number,	//new Date().toLocaleString(),
 	email: String,
+	login: String,
 	password: String
 });
 
